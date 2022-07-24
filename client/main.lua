@@ -65,7 +65,7 @@ function fixVehicle(vehicle)
     if ESXnotify then
         ESX.ShowNotification(_U('start_fix'))
     else
-        exports['mythic_notify']:SendAlert('inform', _U('fixed'))
+        exports['mythic_notify']:SendAlert('inform', _U('start_fix'))
     end
     Wait(Config.RepairTime*1000)
     SetVehicleFixed(vehicle)
@@ -73,7 +73,7 @@ function fixVehicle(vehicle)
     SetVehicleDeformationFixed(vehicle)
     SetVehicleUndriveable(vehicle, false)
     if ESXnotify then
-        ESX.ShowNotification(_U('start_fix'))
+        ESX.ShowNotification(_U('fixed'))
     else
         exports['mythic_notify']:SendAlert('success', _U('fixed'))
     end
