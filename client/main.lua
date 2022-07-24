@@ -23,8 +23,8 @@ AddEventHandler('racingDepo:build', function()
 end)
 
 CreateThread(function()
-    AddTextEntry('REMOVEOBJECT', 'Sbalit depo ~INPUT_CONTEXT~')
-    AddTextEntry('FIXVEHICLE', 'Opravit vozidlo ~INPUT_CONTEXT~')
+    AddTextEntry('REMOVEOBJECT', _U('fold_depo')..' ~INPUT_CONTEXT~')
+    AddTextEntry('FIXVEHICLE', _U('repair_veh')..' ~INPUT_CONTEXT~')
     local playerPed = PlayerPedId()
     while true do
         Wait(20)
