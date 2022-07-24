@@ -67,7 +67,7 @@ function fixVehicle(vehicle)
     else
         exports['mythic_notify']:SendAlert('inform', _U('fixed'))
     end
-    Wait(3000)
+    Wait(Config.FixTime*1000)
     SetVehicleFixed(vehicle)
     SetVehicleFuelLevel(vehicle, Config.Refuel)
     SetVehicleDeformationFixed(vehicle)

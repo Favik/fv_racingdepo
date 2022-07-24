@@ -5,9 +5,11 @@ Config.ESXnotify = true                   -- If set to false mythic_notify is us
 Config.Item = 'depokit'                   -- Usable item
 Config.KeyBind = 38                       -- Build/fold depot and repair vehicle bind - https://docs.fivem.net/docs/game-references/controls/
 
-Config.Refuel = 60.0                      -- Refuelling value (0.0 - 100.0)
 Config.BuildTime = 5                      -- Build depot in sec
 Config.FoldTime = 5                       -- Fold depot in sec
+
+Config.Refuel = 60.0                      -- Refuelling value (0.0 - 100.0)
+Config.FixTime = 3
 
 Config.Locale = 'en'                      -- Language settings / Translation
 
