@@ -33,7 +33,7 @@ CreateThread(function()
         local sleep = true
         
         if not IsPedInAnyVehicle(playerPed, false) then
-            if depoDistance < 1.7 then
+            if depoDistance < 1.8 then
                 isNearDepo = DepoObject
                 sleep = false
                 DisplayHelpTextThisFrame('REMOVEOBJECT') 
@@ -115,7 +115,7 @@ function FindNearestDepo()
 	EndFindObject(handle)
 
 	local depoObject = 0
-	local depoDistance = 10
+	local depoDistance = 5
 
 	for _, Object in pairs(DepoProps) do
 		local dstcheck = #(coords - GetEntityCoords(Object))
