@@ -1,4 +1,4 @@
-ESX.RegisterUsableItem('depokit', function(source)
+ESX.RegisterUsableItem(Config.Item, function(source)
     TriggerClientEvent('racingDepo:build', source)
 end)
 
@@ -6,9 +6,9 @@ RegisterNetEvent("racingDepo:item")
 AddEventHandler("racingDepo:item", function(use)
     local xPlayer = ESX.GetPlayerFromId(source)
     if use then
-        xPlayer.removeInventoryItem('depokit', 1)
+        xPlayer.removeInventoryItem(Config.Item, 1)
     elseif not use then
-        xPlayer.addInventoryItem('depokit', 1)
+        xPlayer.addInventoryItem(Config.Item, 1)
     end
 end)
 

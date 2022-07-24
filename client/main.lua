@@ -7,7 +7,7 @@ AddEventHandler('racingDepo:build', function()
     tentCoords = (coords + forward * 2.0)
     toolboxCoords = (tentCoords + forward * 1.6)
     TaskStartScenarioInPlace(playerPed, 'PROP_HUMAN_BUM_BIN', 0, true)
-    Wait(5000)
+    Wait(Config.BuildTime*1000)
     ClearPedTasksImmediately(playerPed)
     ESX.Game.SpawnObject('prop_gazebo_02', tentCoords, function(obj)
         SetEntityHeading(obj, GetEntityHeading(playerPed))
@@ -62,18 +62,26 @@ CreateThread(function()
 end)
 
 function fixVehicle(vehicle)
-    exports['mythic_notify']:SendAlert('inform', 'Opravuješ vozidlo')
+    if ESXnotify then
+        ESX.ShowNotification(_U('start_fix'))
+    else
+        exports['mythic_notify']:SendAlert('inform', _U('fixed'))
+    end
     Wait(3000)
     SetVehicleFixed(vehicle)
-    SetVehicleFuelLevel(vehicle, 60.0)
+    SetVehicleFuelLevel(vehicle, Config.Refuel)
     SetVehicleDeformationFixed(vehicle)
     SetVehicleUndriveable(vehicle, false)
-    exports['mythic_notify']:SendAlert('success', 'Vozidlo opraveno')
+    if ESXnotify then
+        ESX.ShowNotification(_U('start_fix'))
+    else
+        exports['mythic_notify']:SendAlert('success', _U('fixed'))
+    end
 end
 
 function removeDepo(player, depo)
     TaskStartScenarioInPlace(player, 'PROP_HUMAN_BUM_BIN', 0, true)
-    Wait(5000)
+    Wait(Config.FoldTime*1000)
     ClearPedTasksImmediately(player)
     local object = ObjToNet(depo)
     TriggerServerEvent("racingDepo:DeleteObject", object)
