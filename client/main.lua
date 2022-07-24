@@ -37,7 +37,7 @@ CreateThread(function()
                 isNearDepo = DepoObject
                 sleep = false
                 DisplayHelpTextThisFrame('REMOVEOBJECT') 
-                if IsControlJustReleased(0, 38) then
+                if IsControlJustReleased(0, Config.KeyBind) then
                     removeDepo(playerPed, DepoObject)
                 end
             else
@@ -48,7 +48,7 @@ CreateThread(function()
                 isNearDepo = DepoObject
                 sleep = false
                 DisplayHelpTextThisFrame('FIXVEHICLE') 
-                if IsControlJustReleased(0, 38) then
+                if IsControlJustReleased(0, Config.KeyBind) then
                     fixVehicle(vehicle)
                 end
             else
