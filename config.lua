@@ -15,7 +15,7 @@ Config.Locale = 'en'                      -- Language settings / Translation
 
 Locales['cs'] = {
     ['repair_veh'] = 'Opravit vozidlo',
-    ['fold_depo'] = 'Demontáz depo',
+    ['fold_depo'] = 'Demontáz depa',
     ['start_fix'] = 'Opravujete vozidlo',
     ['fixed'] = 'Vozidlo opraveno',
 }
