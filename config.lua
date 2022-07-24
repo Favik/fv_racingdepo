@@ -9,7 +9,7 @@ Config.BuildTime = 5                      -- Build depot in sec
 Config.FoldTime = 5                       -- Fold depot in sec
 
 Config.Refuel = 60.0                      -- Refuelling value (0.0 - 100.0)
-Config.RepairTime = 3                        -- Vehicle repair time in sec
+Config.RepairTime = 3                     -- Vehicle repair time in sec
 
 Config.Locale = 'en'                      -- Language settings / Translation
 
