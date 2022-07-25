@@ -81,7 +81,7 @@ end
 
 function removeDepo(player, depo)
     TaskStartScenarioInPlace(player, 'PROP_HUMAN_BUM_BIN', 0, true)
-    Wait(Config.FoldTime*1000)
+    Wait(Config.DismantTime*1000)
     ClearPedTasksImmediately(player)
     local object = ObjToNet(depo)
     TriggerServerEvent("racingDepo:DeleteObject", object)
