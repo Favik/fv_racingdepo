@@ -1,7 +1,7 @@
 local isNearDepo = false
 
-RegisterNetEvent('racingDepo:build')
-AddEventHandler('racingDepo:build', function()
+RegisterNetEvent('fv_racingDepot:build')
+AddEventHandler('fv_racingDepot:build', function()
     local playerPed = PlayerPedId()
     local coords, forward = GetEntityCoords(playerPed), GetEntityForwardVector(playerPed)
     tentCoords = (coords + forward * 2.0)
@@ -19,15 +19,15 @@ AddEventHandler('racingDepo:build', function()
         FreezeEntityPosition(obj, true)
         PlaceObjectOnGroundProperly(obj)
     end)
-    TriggerServerEvent('racingDepo:item', true)
+    TriggerServerEvent('fv_racingDepot:item', true)
 end)
 
 CreateThread(function()
-    AddTextEntry('REMOVEOBJECT', _U('fold_depo')..' ~INPUT_CONTEXT~')
+    AddTextEntry('REMOVEOBJECT', _U('dismant_depot')..' ~INPUT_CONTEXT~')
     AddTextEntry('FIXVEHICLE', _U('repair_veh')..' ~INPUT_CONTEXT~')
     local playerPed = PlayerPedId()
     while true do
-        Wait(20)
+        Wait(17)
         local vehicle = GetVehiclePedIsIn(playerPed, false)
         local DepoObject, depoDistance = FindNearestDepo()
         local sleep = true
@@ -38,18 +38,18 @@ CreateThread(function()
                 sleep = false
                 DisplayHelpTextThisFrame('REMOVEOBJECT') 
                 if IsControlJustReleased(0, Config.KeyBind) then
-                    removeDepo(playerPed, DepoObject)
+                    removeDepo()
                 end
             else
                 isNearDepop = false
             end
         else
-            if depoDistance < 1.5 then
+            if depoDistance < 1.6 then
                 isNearDepo = DepoObject
                 sleep = false
                 DisplayHelpTextThisFrame('FIXVEHICLE') 
                 if IsControlJustReleased(0, Config.KeyBind) then
-                    fixVehicle(vehicle)
+                    fixVehicle()
                 end
             else
                 isNearDepop = false
@@ -61,17 +61,21 @@ CreateThread(function()
     end                      
 end)
 
-function fixVehicle(vehicle)
+function fixVehicle()
+    local playerPed = PlayerPedId()
+    local vehicle = GetVehiclePedIsIn(playerPed, false)
     if ESXnotify then
         ESX.ShowNotification(_U('start_fix'))
     else
         exports['mythic_notify']:SendAlert('inform', _U('start_fix'))
     end
+    FreezeEntityPosition(vehicle, true)
     Wait(Config.RepairTime*1000)
     SetVehicleFixed(vehicle)
     SetVehicleFuelLevel(vehicle, Config.Refuel)
     SetVehicleDeformationFixed(vehicle)
     SetVehicleUndriveable(vehicle, false)
+    FreezeEntityPosition(vehicle, false)
     if ESXnotify then
         ESX.ShowNotification(_U('fixed'))
     else
@@ -79,17 +83,18 @@ function fixVehicle(vehicle)
     end
 end
 
-function removeDepo(player, depo)
-    TaskStartScenarioInPlace(player, 'PROP_HUMAN_BUM_BIN', 0, true)
+function removeDepo()
+    local playerPed = PlayerPedId()
+    TaskStartScenarioInPlace(playerPed, 'PROP_HUMAN_BUM_BIN', 0, true)
     Wait(Config.DismantTime*1000)
-    ClearPedTasksImmediately(player)
-    local object = ObjToNet(depo)
-    TriggerServerEvent("racingDepo:DeleteObject", object)
+    ClearPedTasksImmediately(playerPed)
+    local object = ObjToNet(FindNearestDepo())
+    TriggerServerEvent("fv_racingDepot:DeleteObject", object)
     Wait(500)
     local DepoObject = FindNearestDepo()
     while DepoObject == 0 do
         Wait(100)
-        TriggerServerEvent('racingDepo:item', false)
+        TriggerServerEvent('fv_racingDepot:item', false)
         break
     end
 end
