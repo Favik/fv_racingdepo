@@ -30,18 +30,19 @@ CreateThread(function()
         Wait(17)
         local vehicle = GetVehiclePedIsIn(playerPed, false)
         local DepoObject, depoDistance = FindNearestDepo()
-        local sleep = true
-        
+        local sleep = true       
         if not IsPedInAnyVehicle(playerPed, false) then
-            if depoDistance < 1.8 then
-                isNearDepo = DepoObject
-                sleep = false
-                DisplayHelpTextThisFrame('REMOVEOBJECT') 
-                if IsControlJustReleased(0, Config.KeyBind) then
-                    removeDepo()
+            if depoDistance then
+                if depoDistance < 1.8 then
+                    isNearDepo = DepoObject
+                    sleep = false
+                    DisplayHelpTextThisFrame('REMOVEOBJECT') 
+                    if IsControlJustReleased(0, Config.KeyBind) then
+                        removeDepo()
+                    end
+                else
+                    isNearDepop = false
                 end
-            else
-                isNearDepop = false
             end
         else
             if depoDistance < 1.6 then
@@ -100,6 +101,8 @@ function removeDepo()
 end
 
 function FindNearestDepo()
+    local player = PlayerPedId()
+    local getSrvId = GetPlayerServerId(NetworkGetPlayerIndexFromPed(player))
 	local coords = GetEntityCoords(PlayerPedId())
 	local DepoProps = {}
 	local handle, object = FindFirstObject()
@@ -128,6 +131,10 @@ function FindNearestDepo()
 		if dstcheck < depoDistance then
 			depoDistance = dstcheck
 			depoObject = Object
+            local entOwner =GetPlayerServerId(NetworkGetEntityOwner(Object))
+            if entOwner ~= getSrvId then
+                return
+              end
 		end
 	end
 
