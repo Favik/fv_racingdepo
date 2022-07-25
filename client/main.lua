@@ -134,7 +134,7 @@ function FindNearestDepo()
             local entOwner =GetPlayerServerId(NetworkGetEntityOwner(Object))
             if entOwner ~= getSrvId then
                 return
-              end
+            end
 		end
 	end
 
