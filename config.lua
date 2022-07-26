@@ -2,7 +2,7 @@ Config = {}
 
 Config.ESXnotify = true                   -- If set to false mythic_notify is used for notifications and if set to true ESX notifications are used.
 
-Config.Item = 'depokit'                   -- Usable item
+Config.Item = 'depotkit'                  -- Usable item
 Config.KeyBind = 38                       -- Build/Dismantling depot and repair vehicle bind (38 => E) - https://docs.fivem.net/docs/game-references/controls/
 
 Config.BuildTime = 5                      -- Build depot in sec
