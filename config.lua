@@ -18,6 +18,7 @@ Locales['cs'] = {
     ['dismant_depot'] = 'Demontáz depa',
     ['start_fix'] = 'Opravujete vozidlo',
     ['fixed'] = 'Vozidlo opraveno',
+    ['out_veh'] = 'Musíš vystoupit z vozidla'
 }
 
 Locales['pl'] = {
@@ -25,6 +26,7 @@ Locales['pl'] = {
     ['dismant_depot'] = 'Demontaż zajezdnia',
     ['start_fix'] = 'Naprawa pojazdu',
     ['fixed'] = 'Pojazd jest naprawiony',
+    ['out_veh'] = 'Musisz wysiąść z pojazdu'
 }
 
 Locales['en'] = {
@@ -32,4 +34,5 @@ Locales['en'] = {
     ['dismant_depot'] = 'Dismantling the depot',
     ['start_fix'] = 'Repairing your vehicle',
     ['fixed'] = 'The vehicle is repaired',
+    ['out_veh'] = 'You must get out of the vehicle'
 }
