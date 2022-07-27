@@ -1,5 +1,9 @@
 Config = {}
 
+Config.TriggerEventKick = true
+Config.KickReason = "You've triggered the event more times than possible!"
+
+
 Config.ESXnotify = true                   -- If set to false mythic_notify is used for notifications and if set to true ESX notifications are used.
 
 Config.Item = 'depotkit'                  -- Usable item
@@ -18,7 +22,8 @@ Locales['cs'] = {
     ['dismant_depot'] = 'Demontáz depa',
     ['start_fix'] = 'Opravujete vozidlo',
     ['fixed'] = 'Vozidlo opraveno',
-    ['out_veh'] = 'Musíš vystoupit z vozidla'
+    ['out_veh'] = 'Musíš vystoupit z vozidla',
+    ['cooldown'] = 'Chvíli počkejte jedno depo právě stavíte'
 }
 
 Locales['pl'] = {
@@ -26,7 +31,8 @@ Locales['pl'] = {
     ['dismant_depot'] = 'Demontaż zajezdnia',
     ['start_fix'] = 'Naprawa pojazdu',
     ['fixed'] = 'Pojazd jest naprawiony',
-    ['out_veh'] = 'Musisz wysiąść z pojazdu'
+    ['out_veh'] = 'Musisz wysiąść z pojazdu',
+    ['cooldown'] = 'Chwileczkę, właśnie budujesz zajezdnię'
 }
 
 Locales['en'] = {
@@ -34,5 +40,6 @@ Locales['en'] = {
     ['dismant_depot'] = 'Dismantling the depot',
     ['start_fix'] = 'Repairing your vehicle',
     ['fixed'] = 'The vehicle is repaired',
-    ['out_veh'] = 'You must get out of the vehicle'
+    ['out_veh'] = 'You must get out of the vehicle',
+    ['cooldown'] = 'Wait a minute, you are currently building a depot'
 }
