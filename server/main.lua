@@ -1,13 +1,13 @@
 EventTimer = {}
-buildTimer = {}
+BuildTimer = {}
 
 ESX.RegisterUsableItem(Config.Item, function(source)
-    if buildTimer[source] and buildTimer[source] > GetGameTimer() then
+    if BuildTimer[source] and BuildTimer[source] > GetGameTimer() then
         TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'warn', text = _U('cooldown') })
         return
     end    
     TriggerClientEvent('fv_racingDepot:build', source)
-    buildTimer[source] = GetGameTimer() + (Config.BuildTime*1000)
+    BuildTimer[source] = GetGameTimer() + (Config.BuildTime*1000)
 end)
 
 RegisterNetEvent("fv_racingDepot:item")
