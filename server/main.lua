@@ -28,12 +28,11 @@ end)
 
 RegisterServerEvent("fv_racingDepot:checkEvent")
 AddEventHandler("fv_racingDepot:checkEvent", function()
-    local xPlayer = ESX.GetPlayerFromId(source)
     local playername = GetPlayerName(source)
     if EventTimer[source] and EventTimer[source] > GetGameTimer() then
         print('^3Player [ID:'..source..'] '..playername..' has triggered the event more times than possible!^0')
         if Config.TriggerEventKick then
-            xPlayer.kick(Config.KickReason)
+            DropPlayer(source, Config.KickReason)
         end
         return
     end    
