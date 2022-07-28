@@ -41,7 +41,6 @@ CreateThread(function()
         local DepoObject, depoDistance = FindNearestDepo()
         local sleep = true       
         if not IsPedInAnyVehicle(playerPed, false) then
-            if depoDistance then
                 if depoDistance < 1.8 then
                     isNearDepo = DepoObject
                     sleep = false
@@ -52,7 +51,6 @@ CreateThread(function()
                 else
                     isNearDepop = false
                 end
-            end
         else
             if depoDistance < 1.6 then
                 isNearDepo = DepoObject
@@ -140,10 +138,6 @@ function FindNearestDepo()
 		if dstcheck < depoDistance then
 			depoDistance = dstcheck
 			depoObject = Object
-            local entOwner =GetPlayerServerId(NetworkGetEntityOwner(Object))
-            if entOwner ~= getSrvId then
-                return
-            end
 		end
 	end
 
