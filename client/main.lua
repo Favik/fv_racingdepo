@@ -34,9 +34,9 @@ end)
 CreateThread(function()
     AddTextEntry('REMOVEOBJECT', _U('dismant_depot')..' ~INPUT_CONTEXT~')
     AddTextEntry('FIXVEHICLE', _U('repair_veh')..' ~INPUT_CONTEXT~')
-    local playerPed = PlayerPedId()
     while true do
         Wait(17)
+        local playerPed = PlayerPedId()
         local vehicle = GetVehiclePedIsIn(playerPed, false)
         local DepoObject, depoDistance = FindNearestDepo()
         local sleep = true       
