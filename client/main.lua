@@ -7,21 +7,11 @@ AddEventHandler('fv_racingDepot:build', function()
     local tentCoords = (coords + forward * 2.0)
     local toolboxCoords = (tentCoords + forward * 1.6)
     if not IsPedInAnyVehicle(playerPed, false) then
-        TriggerServerEvent('fv_racingDepot:checkEvent')
         TaskStartScenarioInPlace(playerPed, 'WORLD_HUMAN_HAMMERING', 0, true)
         Wait(Config.BuildTime*1000)
         ClearPedTasksImmediately(playerPed)
-        ESX.Game.SpawnObject('prop_gazebo_02', tentCoords, function(obj)
-            SetEntityHeading(obj, GetEntityHeading(playerPed))
-            FreezeEntityPosition(obj, true)
-            PlaceObjectOnGroundProperly(obj)
-        end)
-        ESX.Game.SpawnObject('prop_toolchest_05', toolboxCoords, function(obj)
-            SetEntityHeading(obj, GetEntityHeading(playerPed))
-            FreezeEntityPosition(obj, true)
-            PlaceObjectOnGroundProperly(obj)
-        end)
-        TriggerServerEvent('fv_racingDepot:item', true)
+        local use = true
+        TriggerServerEvent("fv_racingDepot:buildSW",use ,tentCoords, toolboxCoords)
     else
         if ESXnotify then
             ESX.ShowNotification(_U('out_veh'))
@@ -102,7 +92,8 @@ function removeDepo()
     local DepoObject = FindNearestDepo()
     while DepoObject == 0 do
         Wait(100)
-        TriggerServerEvent('fv_racingDepot:item', false)
+        local use = false
+        TriggerServerEvent("fv_racingDepot:buildSW", use)
         break
     end
 end
@@ -110,36 +101,36 @@ end
 function FindNearestDepo()
     local player = PlayerPedId()
     local getSrvId = GetPlayerServerId(NetworkGetPlayerIndexFromPed(player))
-	local coords = GetEntityCoords(PlayerPedId())
-	local DepoProps = {}
-	local handle, object = FindFirstObject()
-	local success
+    local coords = GetEntityCoords(PlayerPedId())
+    local DepoProps = {}
+    local handle, object = FindFirstObject()
+    local success
     local Props = {
         [468818960] = true,
         [-573669520] = true,
     }
 
-	repeat
-		if Props[GetEntityModel(object)] then
-			table.insert(DepoProps, object)
-		end
+    repeat
+        if Props[GetEntityModel(object)] then
+            table.insert(DepoProps, object)
+        end
 
-		success, object = FindNextObject(handle, object)
-	until not success
+        success, object = FindNextObject(handle, object)
+    until not success
 
-	EndFindObject(handle)
+    EndFindObject(handle)
 
-	local depoObject = 0
-	local depoDistance = 5
+    local depoObject = 0
+    local depoDistance = 5
 
-	for _, Object in pairs(DepoProps) do
-		local dstcheck = #(coords - GetEntityCoords(Object))
+    for _, Object in pairs(DepoProps) do
+        local dstcheck = #(coords - GetEntityCoords(Object))
 
-		if dstcheck < depoDistance then
-			depoDistance = dstcheck
-			depoObject = Object
-		end
-	end
+        if dstcheck < depoDistance then
+            depoDistance = dstcheck
+            depoObject = Object
+        end
+    end
 
-	return depoObject, depoDistance
+    return depoObject, depoDistance
 end
