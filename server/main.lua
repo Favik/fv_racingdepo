@@ -31,7 +31,6 @@ AddEventHandler("fv_racingDepot:buildSW", function(use ,tentCoords, toolboxCoord
         SetEntityHeading(object2, GetEntityHeading(GetPlayerPed(source)))
         FreezeEntityPosition(object2, true)
         xPlayer.removeInventoryItem(Config.Item, 1)
-        
     elseif not use then
         xPlayer.addInventoryItem(Config.Item, 1)
     end

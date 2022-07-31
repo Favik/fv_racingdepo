@@ -8,10 +8,10 @@ AddEventHandler('fv_racingDepot:build', function()
     local toolboxCoords = (tentCoords + forward * 1.6)
     if not IsPedInAnyVehicle(playerPed, false) then
         TaskStartScenarioInPlace(playerPed, 'WORLD_HUMAN_HAMMERING', 0, true)
-        Wait(Config.BuildTime*1000)
-        ClearPedTasksImmediately(playerPed)
         local use = true
         TriggerServerEvent("fv_racingDepot:buildSW",use ,tentCoords, toolboxCoords)
+        Wait(Config.BuildTime*1000)
+        ClearPedTasksImmediately(playerPed)
     else
         if ESXnotify then
             ESX.ShowNotification(_U('out_veh'))
