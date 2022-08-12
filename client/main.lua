@@ -39,7 +39,7 @@ CreateThread(function()
                         removeDepo()
                     end
                 else
-                    isNearDepop = false
+                    isNearDepo = false
                 end
         else
             if depoDistance < 1.6 then
@@ -50,7 +50,7 @@ CreateThread(function()
                     fixVehicle()
                 end
             else
-                isNearDepop = false
+                isNearDepo = false
             end
         end
         if sleep then 
